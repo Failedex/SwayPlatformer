@@ -1,0 +1,30 @@
+(defvar player '{"x": 10, "y": 10, "width": 50, "height": 50, "halign": "center", "valign": "center"}')
+
+(defwindow playerbox
+  :geometry (geometry
+              :x 0
+              :y 0
+              :width "100%"
+              :height "100%"
+              :anchor "top left")
+  :stacking "bottom"
+  :monitor 0 
+  (field))
+
+(defwidget field []
+  (box
+    :class "player"
+    :style "
+      margin-left: ${player.x};
+      margin-right: -${player.x+player.width};
+      margin-top: ${player.y};
+      margin-bottom: -${player.y+player.height};"
+    :halign "start"
+    :valign "start"
+    :hexpand false
+    :vexpand false
+    (label 
+      :text "| |"
+      :halign "${player.halign}"
+      :valign "${player.valign}")
+    ))
